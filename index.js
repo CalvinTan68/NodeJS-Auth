@@ -4,6 +4,8 @@ const cors = require("cors");
 const compression = require("compression");
 const app = express();
 
+const librariesRoute = require("./routes/librariesRoute");
+
 app.use(cors({ origin: true }));
 app.use(express.json());
 app.use(
@@ -13,6 +15,10 @@ app.use(
   })
 );
 
+// ROUTE
+app.use("/libraries", librariesRoute);
+
+// PUBLIC AREA
 app.get("/", async (req, res) => {
   res.end(JSON.stringify({ hello: "WORLD!" }));
 });
