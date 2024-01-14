@@ -5,6 +5,7 @@ const compression = require("compression");
 const app = express();
 
 const librariesRoute = require("./routes/librariesRoute");
+const authRoute = require("./routes/authRoute");
 
 app.use(cors({ origin: true }));
 app.use(express.json());
@@ -16,6 +17,7 @@ app.use(
 );
 
 // ROUTE
+app.use("/auth", authRoute);
 app.use("/libraries", librariesRoute);
 
 // PUBLIC AREA
