@@ -23,11 +23,15 @@ module.exports = {
     }
   },
   addLibrary: async (req, res) => {
-    const { body } = req.body;
+    const body = req.body;
     try {
       const query = await prisma.library.create({
         data: {
-          body,
+          book_title: body.book_title,
+          book_author: body.book_author,
+          book_release_year: body.book_release_year,
+          book_synopsis: body.book_synopsis,
+          auditor_id: body.auditor_id,
         },
       });
       res.status(201).json(query);
@@ -36,14 +40,18 @@ module.exports = {
     }
   },
   updateLibrary: async (req, res) => {
-    const { body } = req.body;
+    const body = req.body;
     try {
       const query = await prisma.library.update({
         where: {
           id: req.params.id,
         },
         data: {
-          body,
+          book_title: body.book_title,
+          book_author: body.book_author,
+          book_release_year: body.book_release_year,
+          book_synopsis: body.book_synopsis,
+          auditor_id: body.auditor_id,
         },
       });
       res.status(200).json(query);
