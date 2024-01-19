@@ -8,18 +8,20 @@ const {
   deleteLibrary,
 } = require("../controllers/librariesController");
 
+const { auth } = require("../middlewares/auth");
+
 module.exports = express
   .Router()
-  .get("/", async (req, res) => {
+  .get("/", auth, async (req, res) => {
     await getAllLibraries(req, res);
   })
-  .get("/:id", async (req, res) => await getLibraryById(req, res))
-  .post("/", async (req, res) => {
+  .get("/:id", auth, async (req, res) => await getLibraryById(req, res))
+  .post("/", auth, async (req, res) => {
     await addLibrary(req, res);
   })
-  .put("/:id", async (req, res) => {
+  .put("/:id", auth, async (req, res) => {
     await updateLibrary(req, res);
   })
-  .delete("/:id", async (req, res) => {
+  .delete("/:id", auth, async (req, res) => {
     await deleteLibrary(req, res);
   });
